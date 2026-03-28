@@ -46,7 +46,7 @@ function mockMatchMedia(matchBreakpoint: string) {
 }
 
 // Reset the shared viewport singleton between tests
-async function resetSharedViewport() {
+async function resetSharedVueport() {
   const mod = await import('../src/useVueport')
   // @ts-expect-error accessing module-level variable for testing
   mod.__test_reset?.()

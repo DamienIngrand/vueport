@@ -1,4 +1,4 @@
 export { useVueport } from './useVueport'
-export { Viewport, createViewport, getViewport } from './core'
+export { Vueport, createVueport, getVueport } from './core'
 export { DEFAULT_BREAKPOINTS } from './types'
-export type { Breakpoint, BreakpointConfig, Operator, ViewportOptions, ViewportState } from './types'
+export type { Breakpoint, BreakpointConfig, Operator, VueportOptions, VueportState } from './types'

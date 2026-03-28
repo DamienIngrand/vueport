@@ -1,18 +1,18 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { Viewport } from './core'
+import { Vueport } from './core'
 import { DEFAULT_BREAKPOINTS } from './types'
-import type { Breakpoint, ViewportOptions } from './types'
+import type { Breakpoint, VueportOptions } from './types'
 
-export const useViewportStore = defineStore('vueport', () => {
-  let viewport: Viewport | null = null
+export const useVueportStore = defineStore('vueport', () => {
+  let viewport: Vueport | null = null
 
   const breakpoint = ref<Breakpoint>('')
 
-  function init(options: ViewportOptions = {}): void {
+  function init(options: VueportOptions = {}): void {
     if (viewport) return
 
-    viewport = new Viewport({
+    viewport = new Vueport({
       breakpoints: options.breakpoints ?? DEFAULT_BREAKPOINTS,
       ...options,
     })

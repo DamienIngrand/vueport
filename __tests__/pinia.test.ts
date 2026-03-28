@@ -45,7 +45,7 @@ function mockMatchMedia(matchBreakpoint: string) {
   }
 }
 
-describe('useViewportStore', () => {
+describe('useVueportStore', () => {
   beforeEach(() => {
     vi.resetModules()
     const pinia = createPinia()
@@ -54,8 +54,8 @@ describe('useViewportStore', () => {
 
   it('initializes with current breakpoint', async () => {
     mockMatchMedia('lg')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.breakpoint).toBe('lg')
@@ -63,8 +63,8 @@ describe('useViewportStore', () => {
 
   it('is() works after init', async () => {
     mockMatchMedia('md')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.is('md')).toBe(true)
@@ -74,16 +74,16 @@ describe('useViewportStore', () => {
 
   it('throws if is() called before init', async () => {
     mockMatchMedia('md')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
 
     expect(() => store.is('md')).toThrow('[vueport] Store not initialized')
   })
 
   it('isMobile is reactive', async () => {
     mockMatchMedia('xs')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.isMobile).toBe(true)
@@ -92,8 +92,8 @@ describe('useViewportStore', () => {
 
   it('isTablet for md', async () => {
     mockMatchMedia('md')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.isTablet).toBe(true)
@@ -101,8 +101,8 @@ describe('useViewportStore', () => {
 
   it('isDesktop for xl', async () => {
     mockMatchMedia('xl')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.isDesktop).toBe(true)
@@ -111,8 +111,8 @@ describe('useViewportStore', () => {
 
   it('updates on breakpoint change', async () => {
     const mock = mockMatchMedia('sm')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
 
     expect(store.breakpoint).toBe('sm')
@@ -128,8 +128,8 @@ describe('useViewportStore', () => {
 
   it('init is idempotent', async () => {
     mockMatchMedia('md')
-    const { useViewportStore } = await import('../src/pinia')
-    const store = useViewportStore()
+    const { useVueportStore } = await import('../src/pinia')
+    const store = useVueportStore()
     store.init()
     store.init() // should not throw or reinitialize
 

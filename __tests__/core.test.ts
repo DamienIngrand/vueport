@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { Viewport, createViewport, getViewport } from '../src/core'
+import { Vueport, createVueport, getVueport } from '../src/core'
 
 function mockMatchMedia(matchBreakpoint: string, breakpoints: Record<string, string>) {
   const listeners = new Map<string, (e: { matches: boolean }) => void>()
@@ -44,33 +44,33 @@ const defaultQueries: Record<string, string> = {
   xl: '(min-width: 1200px)',
 }
 
-describe('Viewport', () => {
+describe('Vueport', () => {
   describe('current breakpoint', () => {
     it('detects the current breakpoint', () => {
       mockMatchMedia('md', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       expect(viewport.current).toBe('md')
     })
 
     it('defaults to xs when smallest matches', () => {
       mockMatchMedia('xs', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       expect(viewport.current).toBe('xs')
     })
 
     it('detects xl', () => {
       mockMatchMedia('xl', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       expect(viewport.current).toBe('xl')
     })
   })
 
   describe('is() expressions', () => {
-    let viewport: Viewport
+    let viewport: Vueport
 
     beforeEach(() => {
       mockMatchMedia('md', defaultQueries)
-      viewport = new Viewport()
+      viewport = new Vueport()
     })
 
     it('equals', () => {
@@ -121,39 +121,39 @@ describe('Viewport', () => {
   describe('convenience getters', () => {
     it('isMobile for xs', () => {
       mockMatchMedia('xs', defaultQueries)
-      expect(new Viewport().isMobile).toBe(true)
+      expect(new Vueport().isMobile).toBe(true)
     })
 
     it('isMobile for sm', () => {
       mockMatchMedia('sm', defaultQueries)
-      expect(new Viewport().isMobile).toBe(true)
+      expect(new Vueport().isMobile).toBe(true)
     })
 
     it('isMobile false for lg', () => {
       mockMatchMedia('lg', defaultQueries)
-      expect(new Viewport().isMobile).toBe(false)
+      expect(new Vueport().isMobile).toBe(false)
     })
 
     it('isTablet for md', () => {
       mockMatchMedia('md', defaultQueries)
-      expect(new Viewport().isTablet).toBe(true)
+      expect(new Vueport().isTablet).toBe(true)
     })
 
     it('isDesktop for lg', () => {
       mockMatchMedia('lg', defaultQueries)
-      expect(new Viewport().isDesktop).toBe(true)
+      expect(new Vueport().isDesktop).toBe(true)
     })
 
     it('isDesktop for xl', () => {
       mockMatchMedia('xl', defaultQueries)
-      expect(new Viewport().isDesktop).toBe(true)
+      expect(new Vueport().isDesktop).toBe(true)
     })
   })
 
   describe('onChange', () => {
     it('calls listener on breakpoint change', () => {
       const mock = mockMatchMedia('md', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       const listener = vi.fn()
 
       viewport.onChange(listener)
@@ -164,7 +164,7 @@ describe('Viewport', () => {
 
     it('returns unsubscribe function', () => {
       const mock = mockMatchMedia('md', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       const listener = vi.fn()
 
       const unsubscribe = viewport.onChange(listener)
@@ -184,7 +184,7 @@ describe('Viewport', () => {
 
     it('works with custom breakpoints', () => {
       mockMatchMedia('tablet', customQueries)
-      const viewport = new Viewport({
+      const viewport = new Vueport({
         breakpoints: { mobile: 0, tablet: 640, desktop: 1024 },
       })
 
@@ -197,7 +197,7 @@ describe('Viewport', () => {
   describe('destroy', () => {
     it('clears queries and listeners', () => {
       mockMatchMedia('md', defaultQueries)
-      const viewport = new Viewport()
+      const viewport = new Vueport()
       const listener = vi.fn()
       viewport.onChange(listener)
 
@@ -209,25 +209,25 @@ describe('Viewport', () => {
     })
   })
 
-  describe('createViewport / getViewport', () => {
-    it('createViewport creates a singleton instance', () => {
+  describe('createVueport / getVueport', () => {
+    it('createVueport creates a singleton instance', () => {
       mockMatchMedia('lg', defaultQueries)
-      const viewport = createViewport()
+      const viewport = createVueport()
       expect(viewport.current).toBe('lg')
     })
 
-    it('getViewport returns the created instance', () => {
+    it('getVueport returns the created instance', () => {
       mockMatchMedia('sm', defaultQueries)
-      const created = createViewport()
-      const retrieved = getViewport()
+      const created = createVueport()
+      const retrieved = getVueport()
       expect(retrieved).toBe(created)
     })
 
-    it('getViewport throws if no instance exists', async () => {
+    it('getVueport throws if no instance exists', async () => {
       // Reset module to clear singleton
       vi.resetModules()
-      const { getViewport: freshGetViewport } = await import('../src/core')
-      expect(() => freshGetViewport()).toThrow('[vueport] No viewport instance')
+      const { getVueport: freshGetVueport } = await import('../src/core')
+      expect(() => freshGetVueport()).toThrow('[vueport] No Vueport instance')
     })
   })
 })

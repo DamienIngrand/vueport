@@ -6,12 +6,12 @@ export interface BreakpointConfig {
   [key: string]: number
 }
 
-export interface ViewportOptions {
+export interface VueportOptions {
   breakpoints?: BreakpointConfig
   debounce?: number
 }
 
-export interface ViewportState {
+export interface VueportState {
   current: Breakpoint
   is: (expression: string) => boolean
   isMobile: boolean

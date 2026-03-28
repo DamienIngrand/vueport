@@ -1,11 +1,11 @@
 import { ref, computed, onScopeDispose, type Ref, type ComputedRef } from 'vue'
-import { Viewport } from './core'
+import { Vueport } from './core'
 import { DEFAULT_BREAKPOINTS } from './types'
-import type { Breakpoint, ViewportOptions } from './types'
+import type { Breakpoint, VueportOptions } from './types'
 
-let sharedViewport: Viewport | null = null
+let sharedVueport: Vueport | null = null
 
-interface UseViewportReturn {
+interface UseVueportReturn {
   breakpoint: Ref<Breakpoint>
   is: (expression: string) => ComputedRef<boolean>
   isMobile: ComputedRef<boolean>
@@ -13,15 +13,15 @@ interface UseViewportReturn {
   isDesktop: ComputedRef<boolean>
 }
 
-export function useVueport(options: ViewportOptions = {}): UseViewportReturn {
-  if (!sharedViewport) {
-    sharedViewport = new Viewport({
+export function useVueport(options: VueportOptions = {}): UseVueportReturn {
+  if (!sharedVueport) {
+    sharedVueport = new Vueport({
       breakpoints: options.breakpoints ?? DEFAULT_BREAKPOINTS,
       ...options,
     })
   }
 
-  const viewport = sharedViewport
+  const viewport = sharedVueport
   const breakpoint = ref<Breakpoint>(viewport.current)
 
   const unsubscribe = viewport.onChange((current) => {

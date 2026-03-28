@@ -39,29 +39,29 @@ const isLarge = is('>=lg')
 ### Pinia Store
 
 ```ts
-import { useViewportStore } from 'vueport/pinia'
+import { useVueportStore } from 'vueport/pinia'
 
-const viewport = useViewportStore()
-viewport.init()
+const vueport = useVueportStore()
+vueport.init()
 
 // Reactive in templates and computed
-viewport.breakpoint  // 'lg'
-viewport.is('>=md')  // true
-viewport.isMobile    // false
+vueport.breakpoint  // 'lg'
+vueport.is('>=md')  // true
+vueport.isMobile    // false
 ```
 
 ### Vanilla JS
 
 ```ts
-import { createViewport } from 'vueport/core'
+import { createVueport } from 'vueport/core'
 
-const viewport = createViewport()
+const vueport = createVueport()
 
-viewport.current    // 'lg'
-viewport.is('>=md') // true
-viewport.isMobile   // true
+vueport.current    // 'lg'
+vueport.is('>=md') // true
+vueport.isMobile   // true
 
-viewport.onChange((current, previous) => {
+vueport.onChange((current, previous) => {
   console.log(`${previous} → ${current}`)
 })
 ```
@@ -116,13 +116,13 @@ Vue 3 composable. Returns:
 - `isTablet` — `ComputedRef<boolean>` (md)
 - `isDesktop` — `ComputedRef<boolean>` (lg or xl)
 
-### `useViewportStore()` (from `vueport/pinia`)
+### `useVueportStore()` (from `vueport/pinia`)
 
 Pinia store. Call `init(options?)` before use. Same reactive properties.
 
-### `createViewport(options?)` (from `vueport/core`)
+### `createVueport(options?)` (from `vueport/core`)
 
-Vanilla JS. Returns a `Viewport` instance:
+Vanilla JS. Returns a `Vueport` instance:
 
 - `current` — current breakpoint name
 - `is(expr)` — boolean expression check

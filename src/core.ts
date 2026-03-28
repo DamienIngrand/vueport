@@ -1,16 +1,16 @@
 import { DEFAULT_BREAKPOINTS } from './types'
-import type { Breakpoint, BreakpointConfig, Operator, ViewportOptions } from './types'
+import type { Breakpoint, BreakpointConfig, Operator, VueportOptions } from './types'
 
 type Listener = (current: Breakpoint, previous: Breakpoint | null) => void
 
-export class Viewport {
+export class Vueport {
   private breakpoints: BreakpointConfig
   private sortedBreakpoints: [string, number][]
   private queries: Map<string, MediaQueryList> = new Map()
   private listeners: Set<Listener> = new Set()
   private _current: Breakpoint = ''
 
-  constructor(options: ViewportOptions = {}) {
+  constructor(options: VueportOptions = {}) {
     this.breakpoints = options.breakpoints ?? DEFAULT_BREAKPOINTS
     this.sortedBreakpoints = Object.entries(this.breakpoints).sort((a, b) => a[1] - b[1])
     this.initMediaQueries()
@@ -111,16 +111,16 @@ export class Viewport {
   }
 }
 
-let instance: Viewport | null = null
+let instance: Vueport | null = null
 
-export function createViewport(options: ViewportOptions = {}): Viewport {
-  instance = new Viewport(options)
+export function createVueport(options: VueportOptions = {}): Vueport {
+  instance = new Vueport(options)
   return instance
 }
 
-export function getViewport(): Viewport {
+export function getVueport(): Vueport {
   if (!instance) {
-    throw new Error('[vueport] No viewport instance. Call createViewport() first.')
+    throw new Error('[vueport] No Vueport instance. Call createVueport() first.')
   }
   return instance
 }
