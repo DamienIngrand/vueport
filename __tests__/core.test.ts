@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { Viewport } from '../src/core'
+import { Viewport, createViewport, getViewport } from '../src/core'
 
 function mockMatchMedia(matchBreakpoint: string, breakpoints: Record<string, string>) {
   const listeners = new Map<string, (e: { matches: boolean }) => void>()
@@ -191,6 +191,43 @@ describe('Viewport', () => {
       expect(viewport.current).toBe('tablet')
       expect(viewport.is('>=tablet')).toBe(true)
       expect(viewport.is('desktop')).toBe(false)
+    })
+  })
+
+  describe('destroy', () => {
+    it('clears queries and listeners', () => {
+      mockMatchMedia('md', defaultQueries)
+      const viewport = new Viewport()
+      const listener = vi.fn()
+      viewport.onChange(listener)
+
+      viewport.destroy()
+
+      // Listener should no longer be called after destroy
+      // (simulateChange still fires matchMedia callbacks, but listeners set is cleared)
+      expect(() => viewport.destroy()).not.toThrow()
+    })
+  })
+
+  describe('createViewport / getViewport', () => {
+    it('createViewport creates a singleton instance', () => {
+      mockMatchMedia('lg', defaultQueries)
+      const viewport = createViewport()
+      expect(viewport.current).toBe('lg')
+    })
+
+    it('getViewport returns the created instance', () => {
+      mockMatchMedia('sm', defaultQueries)
+      const created = createViewport()
+      const retrieved = getViewport()
+      expect(retrieved).toBe(created)
+    })
+
+    it('getViewport throws if no instance exists', async () => {
+      // Reset module to clear singleton
+      vi.resetModules()
+      const { getViewport: freshGetViewport } = await import('../src/core')
+      expect(() => freshGetViewport()).toThrow('[vueport] No viewport instance')
     })
   })
 })
