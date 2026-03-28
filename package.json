@@ -35,8 +35,8 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "vue": ">=3.3.0",
-    "pinia": ">=2.1.0"
+    "pinia": ">=2.1.0",
+    "vue": ">=3.3.0"
   },
   "peerDependenciesMeta": {
     "vue": {
@@ -47,13 +47,14 @@
     }
   },
   "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.9",
+    "@vue/test-utils": "^2.4.0",
+    "jsdom": "^24.0.0",
+    "pinia": "^2.2.0",
     "tsup": "^8.0.0",
     "typescript": "^5.4.0",
-    "vue": "^3.5.0",
-    "pinia": "^2.2.0",
     "vitest": "^2.0.0",
-    "@vue/test-utils": "^2.4.0",
-    "jsdom": "^24.0.0"
+    "vue": "^3.5.0"
   },
   "keywords": [
     "vue",

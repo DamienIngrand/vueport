@@ -1,5 +1,10 @@
 # vueport
 
+[![CI](https://github.com/DamienIngrand/vueport/actions/workflows/ci.yml/badge.svg)](https://github.com/DamienIngrand/vueport/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/DamienIngrand/vueport/graph/badge.svg)](https://codecov.io/gh/DamienIngrand/vueport)
+[![npm version](https://img.shields.io/npm/v/vueport.svg)](https://www.npmjs.com/package/vueport)
+[![license](https://img.shields.io/github/license/DamienIngrand/vueport.svg)](https://github.com/DamienIngrand/vueport/blob/main/LICENSE)
+
 Reactive viewport breakpoint detection for Vue 3 and vanilla JS. Uses `window.matchMedia` for reliable, performant breakpoint tracking with zero DOM injection.
 
 ## Install
