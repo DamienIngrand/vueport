@@ -1,5 +1,5 @@
 {
-  "name": "vueport",
+  "name": "@damien-ingrand/vueport",
   "version": "0.1.0",
   "description": "Reactive viewport breakpoint detection for Vue 3 and vanilla JS",
   "type": "module",
@@ -33,6 +33,9 @@
     "test:run": "vitest run",
     "lint": "eslint src/",
     "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "pinia": ">=2.1.0",
