@@ -1,6 +1,6 @@
 {
   "name": "@damien_ingrand/vueport",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Reactive viewport breakpoint detection for Vue 3 and vanilla JS",
   "type": "module",
   "main": "./dist/index.cjs",
