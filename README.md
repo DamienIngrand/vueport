@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/DamienIngrand/vueport/actions/workflows/ci.yml/badge.svg)](https://github.com/DamienIngrand/vueport/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/DamienIngrand/vueport/graph/badge.svg)](https://codecov.io/gh/DamienIngrand/vueport)
-[![npm version](https://img.shields.io/npm/v/vueport.svg)](https://www.npmjs.com/package/vueport)
+[![npm version](https://img.shields.io/npm/v/@damien_ingrand/vueport.svg)](https://www.npmjs.com/package/@damien_ingrand/vueport)
 [![license](https://img.shields.io/github/license/DamienIngrand/vueport.svg)](https://github.com/DamienIngrand/vueport/blob/main/LICENSE)
 
 Reactive viewport breakpoint detection for Vue 3 and vanilla JS. Uses `window.matchMedia` for reliable, performant breakpoint tracking with zero DOM injection.
@@ -10,9 +10,9 @@ Reactive viewport breakpoint detection for Vue 3 and vanilla JS. Uses `window.ma
 ## Install
 
 ```bash
-npm install vueport
+npm install @damien_ingrand/vueport
 # or
-yarn add vueport
+yarn add @damien_ingrand/vueport
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ yarn add vueport
 
 ```vue
 <script setup>
-import { useVueport } from 'vueport'
+import { useVueport } from '@damien_ingrand/vueport'
 
 const { breakpoint, is, isMobile, isDesktop } = useVueport()
 
@@ -39,7 +39,7 @@ const isLarge = is('>=lg')
 ### Pinia Store
 
 ```ts
-import { useVueportStore } from 'vueport/pinia'
+import { useVueportStore } from '@damien_ingrand/vueport/pinia'
 
 const vueport = useVueportStore()
 vueport.init()
@@ -53,7 +53,7 @@ vueport.isMobile    // false
 ### Vanilla JS
 
 ```ts
-import { createVueport } from 'vueport/core'
+import { createVueport } from '@damien_ingrand/vueport/core'
 
 const vueport = createVueport()
 
@@ -82,7 +82,7 @@ The `is()` method accepts an intuitive expression syntax:
 ## Custom Breakpoints
 
 ```ts
-import { useVueport } from 'vueport'
+import { useVueport } from '@damien_ingrand/vueport'
 
 const { breakpoint } = useVueport({
   breakpoints: {
@@ -116,11 +116,11 @@ Vue 3 composable. Returns:
 - `isTablet` — `ComputedRef<boolean>` (md)
 - `isDesktop` — `ComputedRef<boolean>` (lg or xl)
 
-### `useVueportStore()` (from `vueport/pinia`)
+### `useVueportStore()` (from `@damien_ingrand/vueport/pinia`)
 
 Pinia store. Call `init(options?)` before use. Same reactive properties.
 
-### `createVueport(options?)` (from `vueport/core`)
+### `createVueport(options?)` (from `@damien_ingrand/vueport/core`)
 
 Vanilla JS. Returns a `Vueport` instance:
 
